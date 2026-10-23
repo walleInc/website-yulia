@@ -9,7 +9,7 @@ import { FadeIn } from "@/components/FadeIn";
 import { FAQ_ITEMS } from "@/lib/constants";
 
 export function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
     <section className="section" id="faq">
