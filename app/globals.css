@@ -39,7 +39,7 @@ html {
 }
 
 body {
-  background-color: #d9b88f;
+  background-color: #e8c1bb;
   color: var(--ink);
   font-family: var(--font-neucha), "Comic Sans MS", cursive;
   font-size: 21px;
@@ -48,36 +48,13 @@ body {
   max-width: 100%;
 }
 
-/* Kraft paper lives on a fixed layer: no repaint jank while scrolling */
+/* Solid pink backdrop on a fixed layer */
 .kraft-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
-  overflow: hidden;
-  background-color: #d2a77a;
+  background-color: #e8c1bb;
   pointer-events: none;
-}
-
-/* Kraft paper with a warm edge vignette */
-.kraft-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(110, 70, 40, 0.28) 100%),
-    url("/images/kraft.jpg");
-  background-size: 100% 100%, cover;
-  background-position: center;
-}
-
-/* fine paper grain on top */
-.kraft-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: 0.35;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.3  0 0 0 0 0.18  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 }
 
 .font-script {
