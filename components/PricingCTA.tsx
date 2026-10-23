@@ -1,85 +1,63 @@
 "use client";
 
-import { Clock, MessageSquare, Target, Wifi, Heart, ListChecks } from "lucide-react";
 import { FadeIn } from "@/components/FadeIn";
 import { CtaButton } from "@/components/CtaButton";
+import { Check, Circle } from "@/components/Doodles";
 import { PRICES } from "@/lib/constants";
 
-const BENEFITS_LEFT = [
-  { icon: Clock, text: "Онлайн, 60 минут" },
-  { icon: MessageSquare, text: "Разбор ваших трудностей" },
-  { icon: Target, text: "План под ваши цели" },
-] as const;
-
-const BENEFITS_RIGHT = [
-  { icon: ListChecks, text: "Обратная связь на уроке" },
-  { icon: Wifi, text: "Формат онлайн" },
-  { icon: Heart, text: "Спокойный темп" },
+const BENEFITS = [
+  "Познакомимся и оценим ваш уровень",
+  "Разберём трудности и цели",
+  "Наметим комфортный маршрут",
+  "Спокойный темп и обратная связь на уроке",
 ] as const;
 
 export function PricingCTA() {
   return (
-    <section className="snap-section" id="pricing">
-      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-8">
-        <FadeIn>
-          <div className="rounded-3xl bg-white p-6 shadow-lg shadow-rose-100/50 ring-1 ring-rose-100 sm:p-10">
-            <h2 className="font-heading text-center text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-              Пробный урок и цены
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-center text-lg text-ink/70">
-              Познакомимся, оценим уровень и наметим комфортный маршрут.
-            </p>
+    <section className="section" id="pricing">
+      <div className="mx-auto grid w-full max-w-[1200px] items-start gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+        <FadeIn rotate={-1}>
+          <h2 className="font-heading text-5xl text-ink sm:text-6xl">
+            Пробный урок
+          </h2>
+          <div className="relative mt-6 inline-block px-10 py-4">
+            <Circle className="absolute inset-0 h-full w-full text-cocoa" />
+            <span className="font-heading relative text-6xl text-cocoa sm:text-7xl">
+              бесплатно
+            </span>
+          </div>
+          <ul className="mt-8 space-y-3">
+            {BENEFITS.map((text) => (
+              <li key={text} className="flex items-start gap-3 text-lg text-ink sm:text-xl">
+                <Check className="mt-1 h-6 w-6 shrink-0 text-cocoa" />
+                {text}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-10 hidden md:block">
+            <CtaButton>Записаться</CtaButton>
+          </div>
+        </FadeIn>
 
-            <div className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2 sm:gap-4">
-              <ul className="space-y-2.5 sm:space-y-3">
-                {BENEFITS_LEFT.map(({ icon: Icon, text }) => (
-                  <li key={text} className="flex items-center gap-3 text-base text-ink/80 sm:text-lg">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50 text-accent-dark">
-                      <Icon className="h-5 w-5" />
+        <FadeIn x={30} rotate={1}>
+          <div className="sheet-wrap">
+            <div className="sheet px-6 pb-14 pt-9 sm:px-10">
+              <span aria-hidden className="tape left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rotate-[3deg]" />
+              <h3 className="font-heading text-4xl text-cocoa sm:text-5xl">Цены</h3>
+              <ul className="sheet-text mt-3">
+                {PRICES.map((item) => (
+                  <li key={item.label} className="flex items-baseline gap-3 text-lg text-ink">
+                    <span>{item.label}</span>
+                    <span className="dotted-leader" />
+                    <span className="font-heading text-3xl font-bold text-cocoa">
+                      {item.price} ₽
                     </span>
-                    {text}
                   </li>
                 ))}
               </ul>
-              <ul className="space-y-2.5 sm:space-y-3">
-                {BENEFITS_RIGHT.map(({ icon: Icon, text }) => (
-                  <li key={text} className="flex items-center gap-3 text-base text-ink/80 sm:text-lg">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-rose-50 text-accent-dark">
-                      <Icon className="h-5 w-5" />
-                    </span>
-                    {text}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mt-8 flex flex-col items-center justify-center gap-5 border-t border-rose-100 pt-6 sm:mt-10 sm:flex-row sm:gap-8 sm:pt-8">
-              <div className="text-center sm:text-left">
-                <p className="text-sm font-medium uppercase tracking-wide text-ink/50">
-                  Первое занятие
-                </p>
-                <p className="font-heading text-4xl font-extrabold text-accent sm:text-5xl">
-                  Бесплатно
-                </p>
-              </div>
-              <div className="hidden w-full sm:w-auto md:block">
-                <CtaButton className="w-full sm:w-auto">Записаться</CtaButton>
-              </div>
-            </div>
-
-            <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4">
-              {PRICES.map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-xl border border-rose-100 bg-rose-50/40 px-4 py-3.5 text-center sm:py-4"
-                >
-                  <p className="text-sm font-medium text-ink/60">{item.label}</p>
-                  <p className="mt-1 font-heading text-2xl font-extrabold text-ink">
-                    {item.price}
-                  </p>
-                  <p className="text-sm text-ink/55">{item.note}</p>
-                </div>
-              ))}
+              <p className="font-script mt-4 text-2xl text-caramel">
+                цена за 60 минут — чем больше пакет, тем выгоднее
+              </p>
             </div>
           </div>
         </FadeIn>

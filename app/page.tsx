@@ -2,7 +2,6 @@ import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Audience } from "@/components/Audience";
 import { Method } from "@/components/Method";
-import { Quote } from "@/components/Quote";
 import { Reviews } from "@/components/Reviews";
 import { PricingCTA } from "@/components/PricingCTA";
 import { FAQ } from "@/components/FAQ";
@@ -18,7 +17,6 @@ export default function Home() {
         <Hero />
         <Audience />
         <Method />
-        <Quote />
         <Reviews />
         <PricingCTA />
         <FAQ />

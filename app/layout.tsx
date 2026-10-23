@@ -30,7 +30,10 @@ export default function RootLayout({
       lang="ru"
       className={`${manrope.variable} ${caveat.variable} h-full antialiased`}
     >
-      <body className="min-h-full font-sans text-ink">{children}</body>
+      <body className="min-h-full font-sans text-ink">
+        <div className="kraft-bg" aria-hidden />
+        {children}
+      </body>
     </html>
   );
 }

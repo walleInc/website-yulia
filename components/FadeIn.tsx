@@ -7,22 +7,33 @@ type FadeInProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  /** Initial horizontal offset in px, for notes sliding in from the side */
+  x?: number;
+  /** Final tilt in degrees — notes lie slightly crooked, like on a desk */
+  rotate?: number;
 };
 
-export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
+const EASE = [0.25, 0.1, 0.25, 1] as const;
+
+export function FadeIn({ children, className, delay = 0, x = 0, rotate = 0 }: FadeInProps) {
   const reduce = useReducedMotion();
 
   if (reduce) {
-    return <div className={className}>{children}</div>;
+    return (
+      <div className={className} style={{ rotate: `${rotate}deg` }}>
+        {children}
+      </div>
+    );
   }
 
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1], delay }}
+      style={{ willChange: "transform, opacity" }}
+      initial={{ opacity: 0, y: 24, x, rotate: rotate + (x ? 1.5 : 0) }}
+      whileInView={{ opacity: 1, y: 0, x: 0, rotate }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ duration: 0.8, ease: EASE, delay }}
     >
       {children}
     </motion.div>

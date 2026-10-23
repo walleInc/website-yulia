@@ -10,11 +10,11 @@ export function Footer() {
   return (
     <footer
       id="contacts"
-      className="snap-footer border-t border-rose-100/40 bg-white/45 text-ink backdrop-blur-md"
+      className="border-t-2 border-dashed border-cocoa/40 bg-paper/50 text-ink backdrop-blur-sm"
     >
       <div className="mx-auto grid max-w-[1200px] gap-10 px-5 py-12 sm:px-8 lg:grid-cols-3 lg:gap-8 lg:py-14">
         <div>
-          <p className="font-heading text-xl font-extrabold">
+          <p className="font-heading text-4xl">
             Юля <span className="text-accent">Юдина</span>
           </p>
           <p className="mt-3 text-base text-ink/70">
@@ -23,7 +23,7 @@ export function Footer() {
         </div>
 
         <div className="space-y-3">
-          <p className="text-sm font-medium uppercase tracking-wide text-ink/50">
+          <p className="font-script text-2xl text-caramel">
             Контакты
           </p>
           <a
@@ -32,7 +32,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-lg text-ink/85 transition-colors hover:text-accent"
           >
-            <Send className="h-5 w-5 text-accent-dark" />
+            <Send className="h-5 w-5 text-cocoa" />
             Telegram {TELEGRAM_HANDLE}
           </a>
           <a
@@ -41,7 +41,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-lg text-ink/85 transition-colors hover:text-accent"
           >
-            <Instagram className="h-5 w-5 text-accent-dark" />
+            <Instagram className="h-5 w-5 text-cocoa" />
             Instagram {INSTAGRAM_HANDLE}
           </a>
         </div>
@@ -54,7 +54,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-rose-100/30">
+      <div className="border-t border-cocoa/20">
         <p className="mx-auto max-w-[1200px] px-5 py-5 text-sm text-ink/45 sm:px-8">
           © 2026 Юля Юдина. Индивидуальные занятия английским языком онлайн.
           Не является публичной офертой.

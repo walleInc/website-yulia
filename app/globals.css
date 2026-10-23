@@ -1,29 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
-  --foreground: #475569;
-  --accent: #ec4899;
-  --accent-dark: #db2777;
-  --ink: #475569;
+  /* Palette from the reference swatch */
+  --paper: #f7f2ec;
+  --blush: #e8cdc7;
+  --rose: #d3ae9f;
+  --caramel: #b88d78;
+  --cocoa: #86634f;
+  --ink: #4a3428;
   --nav-h: 4rem;
   --sticky-cta-h: 4.5rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-accent-dark: var(--accent-dark);
+  --color-paper: var(--paper);
+  --color-blush: var(--blush);
+  --color-rose: var(--rose);
+  --color-caramel: var(--caramel);
+  --color-cocoa: var(--cocoa);
   --color-ink: var(--ink);
+  --color-accent: var(--cocoa);
+  --color-accent-dark: #6b4a38;
   --font-sans: var(--font-manrope);
-  --font-heading: var(--font-manrope);
+  --font-heading: var(--font-caveat);
   --font-script: var(--font-caveat);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y mandatory;
   scroll-padding-top: var(--nav-h);
 }
 
@@ -33,94 +37,134 @@ html {
   }
 }
 
-@media (max-width: 767px) {
-  html {
-    scroll-padding-bottom: var(--sticky-cta-h);
-  }
-}
-
 body {
-  /* Fixed to viewport so the full pink → cool → pink blend stays visible */
-  background-color: #f8fafc;
-  background-image: linear-gradient(
-    180deg,
-    #fce7f3 0%,
-    #fdf2f8 18%,
-    #f8fafc 42%,
-    #f1f5f9 62%,
-    #fdf2f8 82%,
-    #fce7f3 100%
-  );
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
-  color: var(--foreground);
+  background-color: #d9b88f;
+  color: var(--ink);
   font-family: var(--font-manrope), system-ui, sans-serif;
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.65;
+  overflow-x: hidden;
 }
 
-.font-heading {
-  font-family: var(--font-manrope), system-ui, sans-serif;
+/* Kraft paper lives on a fixed layer: no repaint jank while scrolling */
+.kraft-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-color: #d9b88f;
+  background-image:
+    linear-gradient(rgba(232, 205, 199, 0.28), rgba(247, 242, 236, 0.22)),
+    url("/images/kraft.jpg");
+  background-size: 100% 100%, cover;
+  background-position: center;
+  pointer-events: none;
 }
 
+.font-heading,
 .font-script {
   font-family: var(--font-caveat), cursive;
 }
 
-.snap-section {
-  min-height: calc(100svh - var(--nav-h));
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+.font-heading {
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0;
 }
 
-@media (max-width: 767px) {
-  .snap-section {
-    min-height: calc(100svh - var(--nav-h) - var(--sticky-cta-h));
-    padding-bottom: 2.5rem;
-  }
-}
-
-@media (min-width: 640px) {
-  .snap-section {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
+.section {
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
 }
 
 @media (min-width: 1024px) {
-  .snap-section {
-    padding-top: 3.5rem;
-    padding-bottom: 3.5rem;
+  .section {
+    padding-top: 6.5rem;
+    padding-bottom: 6.5rem;
   }
 }
 
-.snap-footer {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
+/* Marker highlight behind a word */
+.marker {
+  background-image: linear-gradient(
+    transparent 58%,
+    rgba(232, 205, 199, 0.95) 58% 92%,
+    transparent 92%
+  );
+  padding: 0 0.15em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
-.section-pad {
-  padding-top: 3.5rem;
-  padding-bottom: 3.5rem;
+/* Lined notebook sheet — no outline, torn bottom edge, soft shadow on wrapper */
+.sheet-wrap {
+  filter: drop-shadow(0 10px 14px rgba(74, 52, 40, 0.22));
 }
 
-@media (min-width: 640px) {
-  .section-pad {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-  }
+.sheet {
+  position: relative;
+  background-color: var(--paper);
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 31px,
+    rgba(134, 99, 79, 0.2) 31px 32px
+  );
+  background-position: 0 14px;
+  clip-path: polygon(
+    0 0, 100% 0, 100% 97.5%, 96% 99.5%, 91% 97.8%, 86% 99.6%, 80% 98%,
+    74% 99.7%, 68% 97.9%, 62% 99.5%, 55% 98%, 49% 99.6%, 43% 97.9%,
+    37% 99.5%, 31% 98.1%, 25% 99.6%, 19% 98%, 13% 99.5%, 7% 98.2%,
+    3% 99.6%, 0 98%
+  );
 }
 
-@media (min-width: 1024px) {
-  .section-pad {
-    padding-top: 4.5rem;
-    padding-bottom: 4.5rem;
+/* Pink margin line like a school notebook */
+.sheet--margin::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3.1rem;
+  width: 2px;
+  background: rgba(211, 140, 130, 0.55);
+}
+
+.sheet-text {
+  line-height: 32px;
+}
+
+/* Photo cut-out: white sticker edge with uneven outline */
+.sticker-wrap {
+  filter: drop-shadow(0 12px 16px rgba(74, 52, 40, 0.3));
+}
+
+.sticker {
+  background: #fffdfa;
+  padding: 10px;
+  clip-path: polygon(
+    3% 1%, 22% 0, 48% 1.2%, 73% 0, 97% 1.5%, 100% 22%, 99% 47%, 100% 76%,
+    98% 99%, 74% 100%, 49% 98.8%, 24% 100%, 1% 98.5%, 0 74%, 1.2% 48%, 0 23%
+  );
+}
+
+.tape {
+  position: absolute;
+  height: 28px;
+  width: 92px;
+  background: rgba(232, 205, 199, 0.78);
+  backdrop-filter: blur(1px);
+  box-shadow: 0 1px 3px rgba(74, 52, 40, 0.18);
+  clip-path: polygon(0 8%, 4% 0, 8% 10%, 12% 0, 100% 0, 96% 25%, 100% 50%, 96% 75%, 100% 100%, 8% 100%, 4% 88%, 0 100%, 3% 50%);
+}
+
+.dotted-leader {
+  flex: 1;
+  border-bottom: 2px dotted rgba(134, 99, 79, 0.5);
+  transform: translateY(-0.35em);
+  min-width: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

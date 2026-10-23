@@ -14,22 +14,17 @@ export function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-white/75 backdrop-blur-xl"
-          : "bg-transparent"
+      className={`sticky top-0 z-50 transition-colors duration-500 ${
+        scrolled ? "bg-paper/80 shadow-[0_1px_0_rgba(134,99,79,0.2)] backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-5 sm:h-[72px] sm:px-8">
-        <a
-          href="#top"
-          className="font-heading text-lg font-extrabold tracking-tight text-ink sm:text-xl"
-        >
-          Юля <span className="text-accent">Юдина</span>
+        <a href="#top" className="font-heading text-3xl font-bold text-ink sm:text-4xl">
+          Юля <span className="text-cocoa">Юдина</span>
         </a>
         <a
           href="#contacts"
-          className="text-base font-medium text-ink/70 transition-colors hover:text-accent"
+          className="font-heading text-2xl font-bold text-cocoa underline decoration-rose decoration-[3px] underline-offset-4 transition-colors hover:text-ink"
         >
           Связаться
         </a>

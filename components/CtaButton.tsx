@@ -17,11 +17,11 @@ export function CtaButton({
   href = TELEGRAM_URL,
 }: CtaButtonProps) {
   const base =
-    "inline-flex items-center justify-center rounded-2xl px-7 py-3.5 text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
+    "inline-flex items-center justify-center rounded-full px-8 py-3 font-heading text-2xl font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cocoa focus-visible:ring-offset-2 focus-visible:ring-offset-paper";
   const styles =
     variant === "solid"
-      ? "bg-accent text-white shadow-lg shadow-rose-200/60 hover:bg-accent-dark"
-      : "border-2 border-accent bg-transparent text-accent hover:bg-accent/5";
+      ? "bg-cocoa text-paper shadow-[0_6px_0_#5d4332,0_10px_18px_rgba(74,52,40,0.3)] hover:bg-accent-dark"
+      : "bg-paper/70 text-cocoa hover:bg-paper";
 
   return (
     <motion.a
@@ -29,9 +29,9 @@ export function CtaButton({
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       className={`${base} ${styles} ${className}`}
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.98 }}
-      transition={{ type: "spring", stiffness: 400, damping: 22 }}
+      whileHover={{ y: -2 }}
+      whileTap={{ y: 3 }}
+      transition={{ type: "spring", stiffness: 320, damping: 26 }}
     >
       {children}
     </motion.a>

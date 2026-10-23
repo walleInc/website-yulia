@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import { FadeIn } from "@/components/FadeIn";
 import { FAQ_ITEMS } from "@/lib/constants";
 
@@ -9,44 +9,54 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="snap-section" id="faq">
-      <div className="mx-auto w-full max-w-[720px] px-5 sm:px-8">
+    <section className="section" id="faq">
+      <div className="mx-auto w-full max-w-[760px] px-5 sm:px-8">
         <FadeIn>
-          <h2 className="font-heading text-center text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
-            FAQ
+          <h2 className="font-heading text-center text-5xl text-ink sm:text-6xl">
+            Частые <span className="marker">вопросы</span>
           </h2>
         </FadeIn>
 
-        <div className="mt-8 space-y-2.5 sm:mt-10 sm:space-y-3">
+        <div className="mt-12">
           {FAQ_ITEMS.map((item, i) => {
             const isOpen = open === i;
             return (
               <FadeIn key={item.q} delay={i * 0.05}>
-                <div className="overflow-hidden rounded-2xl border border-rose-100 bg-white shadow-sm">
+                <div className="border-b-2 border-dashed border-cocoa/30">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-4 px-5 py-3.5 text-left text-base font-semibold text-ink sm:px-6 sm:py-4 sm:text-lg"
+                    className="flex w-full items-center justify-between gap-4 py-5 text-left"
                     aria-expanded={isOpen}
                     onClick={() => setOpen(isOpen ? null : i)}
                   >
-                    <span>{item.q}</span>
-                    <ChevronDown
-                      className={`h-5 w-5 shrink-0 text-accent transition-transform duration-300 ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
-                    />
+                    <span className="font-heading text-3xl text-ink sm:text-4xl">
+                      {item.q}
+                    </span>
+                    <motion.span
+                      aria-hidden
+                      className="font-heading text-5xl leading-none text-cocoa"
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                    >
+                      +
+                    </motion.span>
                   </button>
-                  <div
-                    className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <p className="border-t border-rose-50 px-5 pb-4 pt-3 text-base leading-relaxed text-ink/70 sm:px-6">
-                        {item.a}
-                      </p>
-                    </div>
-                  </div>
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        key="answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-6 text-lg leading-relaxed text-ink/85 sm:text-xl">
+                          {item.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               </FadeIn>
             );
