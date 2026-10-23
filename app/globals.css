@@ -7,7 +7,7 @@
   --rose: #d3ae9f;
   --caramel: #b88d78;
   --cocoa: #86634f;
-  --ink: #4a3428;
+  --ink: #35231a;
   --nav-h: 4rem;
   --sticky-cta-h: 4.5rem;
 }
@@ -21,12 +21,13 @@
   --color-ink: var(--ink);
   --color-accent: var(--cocoa);
   --color-accent-dark: #6b4a38;
-  --font-sans: var(--font-manrope);
-  --font-heading: var(--font-caveat);
+  --font-sans: var(--font-neucha);
+  --font-heading: var(--font-marck);
   --font-script: var(--font-caveat);
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: var(--nav-h);
 }
@@ -40,10 +41,11 @@ html {
 body {
   background-color: #d9b88f;
   color: var(--ink);
-  font-family: var(--font-manrope), system-ui, sans-serif;
-  font-size: 18px;
-  line-height: 1.65;
-  overflow-x: hidden;
+  font-family: var(--font-neucha), "Comic Sans MS", cursive;
+  font-size: 21px;
+  line-height: 1.6;
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 /* Kraft paper lives on a fixed layer: no repaint jank while scrolling */
@@ -51,43 +53,61 @@ body {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: #d9b88f;
-  background-image:
-    linear-gradient(rgba(232, 205, 199, 0.28), rgba(247, 242, 236, 0.22)),
-    url("/images/kraft.jpg");
-  background-size: 100% 100%, cover;
-  background-position: center;
+  overflow: hidden;
+  background-color: #d2a77a;
   pointer-events: none;
 }
 
-.font-heading,
+/* Kraft paper with a warm edge vignette */
+.kraft-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 50% 40%, transparent 55%, rgba(110, 70, 40, 0.28) 100%),
+    url("/images/kraft.jpg");
+  background-size: 100% 100%, cover;
+  background-position: center;
+}
+
+/* fine paper grain on top */
+.kraft-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.45  0 0 0 0 0.3  0 0 0 0 0.18  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
 .font-script {
   font-family: var(--font-caveat), cursive;
 }
 
 .font-heading {
-  font-weight: 700;
-  line-height: 1.05;
+  font-family: var(--font-marck), var(--font-caveat), cursive;
+  font-weight: 400;
+  font-synthesis: none;
+  line-height: 1.1;
   letter-spacing: 0;
 }
 
 .section {
-  padding-top: 4.5rem;
-  padding-bottom: 4.5rem;
+  padding: 1.25rem 0.75rem;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 640px) {
   .section {
-    padding-top: 6.5rem;
-    padding-bottom: 6.5rem;
+    padding: 1.75rem 1.5rem;
   }
 }
+
 
 /* Marker highlight behind a word */
 .marker {
   background-image: linear-gradient(
-    transparent 58%,
-    rgba(232, 205, 199, 0.95) 58% 92%,
+    transparent 55%,
+    rgba(232, 205, 199, 1) 55% 92%,
     transparent 92%
   );
   padding: 0 0.15em;
@@ -97,6 +117,7 @@ body {
 
 /* Lined notebook sheet — no outline, torn bottom edge, soft shadow on wrapper */
 .sheet-wrap {
+  position: relative;
   filter: drop-shadow(0 10px 14px rgba(74, 52, 40, 0.22));
 }
 
@@ -118,6 +139,14 @@ body {
 }
 
 /* Pink margin line like a school notebook */
+.sheet--blush {
+  background-color: var(--blush);
+}
+
+.sheet--rose {
+  background-color: #dcbcae;
+}
+
 .sheet--margin::before {
   content: "";
   position: absolute;
@@ -130,6 +159,7 @@ body {
 
 .sheet-text {
   line-height: 32px;
+  font-size: 20px;
 }
 
 /* Photo cut-out: white sticker edge with uneven outline */
@@ -166,5 +196,85 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* White sheet of paper holding a whole section; torn top and bottom edges */
+.page {
+  position: relative;
+  background-color: #fffefb;
+  padding: 3.5rem clamp(1.25rem, 5vw, 4rem);
+  clip-path: polygon(0% 2px, 2% 1px, 4% 3px, 6% 7px, 8% 0px, 10% 0px, 12% 9px, 14% 5px, 16% 0px, 18% 2px, 20% 5px, 22% 0px, 24% 5px, 26% 1px, 28% 0px, 30% 0px, 32% 3px, 34% 3px, 36% 0px, 38% 1px, 40% 0px, 42% 5px, 44% 3px, 46% 0px, 48% 9px, 50% 5px, 52% 0px, 54% 1px, 56% 7px, 58% 7px, 60% 5px, 62% 0px, 64% 5px, 66% 5px, 68% 3px, 70% 0px, 72% 1px, 74% 0px, 76% 5px, 78% 9px, 80% 1px, 82% 2px, 84% 3px, 86% 1px, 88% 5px, 90% 0px, 92% 5px, 94% 2px, 96% 5px, 98% 9px, 100% 7px, 100% calc(100% - 1px), 98% calc(100% - 0px), 96% calc(100% - 5px), 94% calc(100% - 5px), 92% calc(100% - 7px), 90% calc(100% - 1px), 88% calc(100% - 2px), 86% calc(100% - 0px), 84% calc(100% - 5px), 82% calc(100% - 7px), 80% calc(100% - 0px), 78% calc(100% - 5px), 76% calc(100% - 0px), 74% calc(100% - 5px), 72% calc(100% - 1px), 70% calc(100% - 3px), 68% calc(100% - 7px), 66% calc(100% - 5px), 64% calc(100% - 3px), 62% calc(100% - 9px), 60% calc(100% - 2px), 58% calc(100% - 3px), 56% calc(100% - 5px), 54% calc(100% - 3px), 52% calc(100% - 2px), 50% calc(100% - 2px), 48% calc(100% - 1px), 46% calc(100% - 9px), 44% calc(100% - 1px), 42% calc(100% - 7px), 40% calc(100% - 9px), 38% calc(100% - 1px), 36% calc(100% - 0px), 34% calc(100% - 5px), 32% calc(100% - 2px), 30% calc(100% - 5px), 28% calc(100% - 3px), 26% calc(100% - 2px), 24% calc(100% - 7px), 22% calc(100% - 3px), 20% calc(100% - 2px), 18% calc(100% - 5px), 16% calc(100% - 0px), 14% calc(100% - 0px), 12% calc(100% - 5px), 10% calc(100% - 3px), 8% calc(100% - 1px), 6% calc(100% - 9px), 4% calc(100% - 2px), 2% calc(100% - 1px), 0% calc(100% - 3px));
+  filter: none;
+}
+
+.page-wrap {
+  filter: drop-shadow(0 14px 20px rgba(110, 50, 50, 0.3));
+}
+
+/* Pasted print: white backing at the bottom, edges cut slightly crooked */
+.snap-wrap {
+  filter: drop-shadow(0 8px 10px rgba(53, 35, 26, 0.28));
+}
+
+.snap-card {
+  background: #fff;
+  padding: 10px 10px 38px;
+  clip-path: polygon(0.6% 0.8%, 31% 0, 63% 1%, 99.4% 0.2%, 100% 34%, 99% 67%, 100% 99.2%, 70% 100%, 36% 99%, 0.7% 100%, 0 66%, 1% 32%);
+}
+
+.snap-photo {
+  clip-path: polygon(1% 0, 42% 1.5%, 99% 0, 100% 42%, 98.6% 100%, 55% 98.6%, 0 100%, 1.4% 52%);
+}
+
+/* Text plates: shaped backings so copy stays readable on any background */
+.plate-wrap {
+  filter: drop-shadow(0 6px 8px rgba(110, 50, 50, 0.22));
+}
+
+.plate {
+  padding: 0.9rem 1.15rem;
+  color: var(--ink);
+}
+
+.plate--cream { background: #f7f2ec; }
+.plate--blush { background: var(--blush); }
+.plate--rose { background: #dcbcae; }
+.plate--cocoa { background: var(--cocoa); color: var(--paper); }
+
+.plate--soft1 {
+  border-radius: 2.2rem 0.9rem 2.6rem 1rem / 1rem 2.4rem 1rem 2.2rem;
+}
+
+.plate--soft2 {
+  border-radius: 1rem 2.6rem 1rem 2.4rem / 2.4rem 1rem 2.6rem 1rem;
+}
+
+.plate--blob {
+  border-radius: 58% 42% 55% 45% / 52% 48% 52% 48%;
+  padding: 1.1rem 1.7rem;
+}
+
+.plate--burst {
+  clip-path: polygon(50.0% 0.0%, 60.4% 11.4%, 75.0% 6.7%, 78.3% 21.7%, 93.3% 25.0%, 88.6% 39.6%, 100.0% 50.0%, 88.6% 60.4%, 93.3% 75.0%, 78.3% 78.3%, 75.0% 93.3%, 60.4% 88.6%, 50.0% 100.0%, 39.6% 88.6%, 25.0% 93.3%, 21.7% 78.3%, 6.7% 75.0%, 11.4% 60.4%, 0.0% 50.0%, 11.4% 39.6%, 6.7% 25.0%, 21.7% 21.7%, 25.0% 6.7%, 39.6% 11.4%);
+  padding: 2rem 2.1rem;
+  text-align: center;
+}
+
+.plate--stamp {
+  clip-path: polygon(0% 0, 4% 7px, 8% 0, 12% 7px, 16% 0, 20% 7px, 24% 0, 28% 7px, 32% 0, 36% 7px, 40% 0, 44% 7px, 48% 0, 52% 7px, 56% 0, 60% 7px, 64% 0, 68% 7px, 72% 0, 76% 7px, 80% 0, 84% 7px, 88% 0, 92% 7px, 96% 0, 100% 7px, 100% 0%, calc(100% - 7px) 12%, 100% 24%, calc(100% - 7px) 36%, 100% 48%, calc(100% - 7px) 60%, 100% 72%, calc(100% - 7px) 84%, 100% 96%, 100% 100%, 96% calc(100% - 7px), 92% 100%, 88% calc(100% - 7px), 84% 100%, 80% calc(100% - 7px), 76% 100%, 72% calc(100% - 7px), 68% 100%, 64% calc(100% - 7px), 60% 100%, 56% calc(100% - 7px), 52% 100%, 48% calc(100% - 7px), 44% 100%, 40% calc(100% - 7px), 36% 100%, 32% calc(100% - 7px), 28% 100%, 24% calc(100% - 7px), 20% 100%, 16% calc(100% - 7px), 12% 100%, 8% calc(100% - 7px), 4% 100%, 0% calc(100% - 7px), 0 96%, 7px 84%, 0 72%, 7px 60%, 0 48%, 7px 36%, 0 24%, 7px 12%, 0 0%);
+}
+
+@media (min-width: 640px) {
+  .plate {
+    padding: 1.1rem 1.6rem;
+  }
+
+  .plate--blob {
+    padding: 1.6rem 2.6rem;
+  }
+
+  .plate--burst {
+    padding: 3.2rem 3.4rem;
   }
 }

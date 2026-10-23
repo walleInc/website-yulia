@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Manrope, Caveat } from "next/font/google";
+import { Neucha, Caveat, Marck_Script } from "next/font/google";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const neucha = Neucha({
+  variable: "--font-neucha",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: "400",
+});
+
+const marck = Marck_Script({
+  variable: "--font-marck",
+  subsets: ["latin", "cyrillic"],
+  weight: "400",
 });
 
 const caveat = Caveat({
@@ -28,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="ru"
-      className={`${manrope.variable} ${caveat.variable} h-full antialiased`}
+      className={`${neucha.variable} ${caveat.variable} ${marck.variable} h-full antialiased`}
     >
       <body className="min-h-full font-sans text-ink">
         <div className="kraft-bg" aria-hidden />
