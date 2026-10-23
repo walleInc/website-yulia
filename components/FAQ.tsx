@@ -9,15 +9,15 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="section-pad" id="faq">
-      <div className="mx-auto max-w-[720px] px-5 sm:px-8">
+    <section className="snap-section" id="faq">
+      <div className="mx-auto w-full max-w-[720px] px-5 sm:px-8">
         <FadeIn>
           <h2 className="font-heading text-center text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             FAQ
           </h2>
         </FadeIn>
 
-        <div className="mt-10 space-y-3">
+        <div className="mt-8 space-y-2.5 sm:mt-10 sm:space-y-3">
           {FAQ_ITEMS.map((item, i) => {
             const isOpen = open === i;
             return (
@@ -25,7 +25,7 @@ export function FAQ() {
                 <div className="overflow-hidden rounded-2xl border border-rose-100 bg-white shadow-sm">
                   <button
                     type="button"
-                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-lg font-semibold text-ink sm:px-6 sm:py-5"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-3.5 text-left text-base font-semibold text-ink sm:px-6 sm:py-4 sm:text-lg"
                     aria-expanded={isOpen}
                     onClick={() => setOpen(isOpen ? null : i)}
                   >
@@ -42,7 +42,7 @@ export function FAQ() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="border-t border-rose-50 px-5 pb-5 pt-3 text-base leading-relaxed text-ink/70 sm:px-6 sm:text-lg">
+                      <p className="border-t border-rose-50 px-5 pb-4 pt-3 text-base leading-relaxed text-ink/70 sm:px-6">
                         {item.a}
                       </p>
                     </div>

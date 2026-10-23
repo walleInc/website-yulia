@@ -12,7 +12,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
-    <div id="top" className="flex min-h-full flex-col pb-20 md:pb-0">
+    <div id="top" className="flex min-h-full flex-col pb-[var(--sticky-cta-h)] md:pb-0">
       <Navbar />
       <main className="flex-1">
         <Hero />

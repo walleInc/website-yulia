@@ -7,19 +7,19 @@ import { AUDIENCE } from "@/lib/constants";
 
 export function Audience() {
   return (
-    <section className="section-pad" id="audience">
-      <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16">
+    <section className="snap-section" id="audience">
+      <div className="mx-auto grid w-full max-w-[1200px] items-center gap-8 px-5 sm:gap-10 sm:px-8 lg:grid-cols-2 lg:gap-14">
         <FadeIn>
           <h2 className="font-heading text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
             Кому подойдут занятия
           </h2>
-          <p className="mt-5 text-lg leading-relaxed text-ink/70">
+          <p className="mt-4 text-lg leading-relaxed text-ink/70">
             Работаю онлайн с теми, кто хочет заговорить уверенно — без спешки и
             лишнего стресса. Подхожу индивидуально к каждому ученику.
           </p>
-          <ul className="mt-8 space-y-4">
+          <ul className="mt-6 space-y-3 sm:mt-8 sm:space-y-4">
             {AUDIENCE.map((item) => (
-              <li key={item} className="flex gap-3 text-lg text-ink/85">
+              <li key={item} className="flex gap-3 text-base text-ink/85 sm:text-lg">
                 <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-rose-100 text-accent-dark">
                   <Check className="h-4 w-4" strokeWidth={2.5} />
                 </span>
@@ -29,14 +29,14 @@ export function Audience() {
           </ul>
           <a
             href="#reviews"
-            className="mt-9 inline-flex items-center justify-center rounded-2xl border-2 border-accent px-6 py-3 text-base font-semibold text-accent transition-colors hover:bg-accent/5"
+            className="mt-7 inline-flex items-center justify-center rounded-2xl border-2 border-accent px-6 py-3 text-base font-semibold text-accent transition-colors hover:bg-accent/5 sm:mt-8"
           >
             Читать отзывы
           </a>
         </FadeIn>
 
-        <FadeIn delay={0.1} className="grid grid-cols-2 gap-4">
-          <div className="relative col-span-2 aspect-[4/3] overflow-hidden rounded-2xl shadow-lg shadow-rose-100/60 ring-1 ring-rose-100 sm:col-span-1 sm:aspect-square sm:row-span-2">
+        <FadeIn delay={0.1} className="grid grid-cols-2 gap-3 sm:gap-4">
+          <div className="relative col-span-2 aspect-[4/3] max-h-[280px] overflow-hidden rounded-2xl shadow-lg shadow-rose-100/60 ring-1 ring-rose-100 sm:col-span-1 sm:aspect-square sm:max-h-none sm:row-span-2">
             <Image
               src="/images/yulia-about.jpg"
               alt="Юля Юдина"

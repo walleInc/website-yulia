@@ -40,35 +40,35 @@ const STEPS = [
 
 export function Method() {
   return (
-    <section className="section-pad bg-white/50" id="method">
-      <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+    <section className="snap-section" id="method">
+      <div className="mx-auto w-full max-w-[1200px] px-5 sm:px-8">
         <FadeIn>
           <h2 className="font-heading text-center text-3xl font-extrabold tracking-tight text-accent sm:text-4xl">
             Как проходит урок
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-lg text-ink/70">
+          <p className="mx-auto mt-3 max-w-2xl text-center text-lg text-ink/70">
             Онлайн, 60 минут. Структура, которая держит фокус и оставляет место
             для живого общения.
           </p>
         </FadeIn>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3">
           {STEPS.map((step, i) => {
             const Icon = step.icon;
             return (
               <FadeIn key={step.title} delay={i * 0.06}>
                 <motion.article
-                  className="h-full rounded-2xl bg-white p-7 shadow-md shadow-rose-100/50 ring-1 ring-rose-100/80"
+                  className="h-full rounded-2xl bg-white p-5 shadow-md shadow-rose-100/50 ring-1 ring-rose-100/80 sm:p-6"
                   whileHover={{ y: -4, boxShadow: "0 16px 40px rgba(244, 114, 182, 0.15)" }}
                   transition={{ type: "spring", stiffness: 300, damping: 24 }}
                 >
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-rose-50 text-accent-dark">
-                    <Icon className="h-6 w-6" strokeWidth={1.75} />
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-rose-50 text-accent-dark sm:mb-4 sm:h-11 sm:w-11">
+                    <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.75} />
                   </div>
-                  <h3 className="font-heading text-xl font-bold text-ink">
+                  <h3 className="font-heading text-lg font-bold text-ink sm:text-xl">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-base leading-relaxed text-ink/70 sm:text-lg">
+                  <p className="mt-2 text-base leading-relaxed text-ink/70">
                     {step.text}
                   </p>
                 </motion.article>
