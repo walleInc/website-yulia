@@ -1,0 +1,126 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f8fafc;
+  --foreground: #475569;
+  --accent: #ec4899;
+  --accent-dark: #db2777;
+  --ink: #475569;
+  --nav-h: 4rem;
+  --sticky-cta-h: 4.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-ink: var(--ink);
+  --font-sans: var(--font-manrope);
+  --font-heading: var(--font-manrope);
+  --font-script: var(--font-caveat);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: var(--nav-h);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --nav-h: 4.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    scroll-padding-bottom: var(--sticky-cta-h);
+  }
+}
+
+body {
+  /* One continuous wash along the full page — colors melt into each other */
+  background-color: #f8fafc;
+  background-image: linear-gradient(
+    180deg,
+    #fce7f3 0%,
+    #fdf2f8 14%,
+    #f8fafc 32%,
+    #f1f5f9 50%,
+    #f8fafc 68%,
+    #fdf2f8 86%,
+    #fce7f3 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: var(--foreground);
+  font-family: var(--font-manrope), system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.font-heading {
+  font-family: var(--font-manrope), system-ui, sans-serif;
+}
+
+.font-script {
+  font-family: var(--font-caveat), cursive;
+}
+
+.snap-section {
+  min-height: calc(100svh - var(--nav-h));
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+@media (max-width: 767px) {
+  .snap-section {
+    min-height: calc(100svh - var(--nav-h) - var(--sticky-cta-h));
+    padding-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .snap-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .snap-section {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+}
+
+.snap-footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+.section-pad {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-pad {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-pad {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
