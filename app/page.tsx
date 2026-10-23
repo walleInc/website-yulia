@@ -6,12 +6,11 @@ import { Reviews } from "@/components/Reviews";
 import { PricingCTA } from "@/components/PricingCTA";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
-import { MobileStickyCta } from "@/components/MobileStickyCta";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
-    <div id="top" className="flex min-h-full flex-col pb-[var(--sticky-cta-h)] md:pb-0">
+    <div id="top" className="flex min-h-full flex-col">
       <Navbar />
       <main className="flex-1">
         <Hero />
@@ -22,7 +21,6 @@ export default function Home() {
         <FAQ />
       </main>
       <Footer />
-      <MobileStickyCta />
       <ScrollToTop />
     </div>
   );

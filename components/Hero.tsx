@@ -60,7 +60,7 @@ export function Hero() {
           </FadeIn>
 
           <FadeIn delay={0.3}>
-            <div className="mt-9 hidden md:block">
+            <div className="mt-9">
               <CtaButton>Записаться на пробный урок</CtaButton>
             </div>
           </FadeIn>

@@ -40,7 +40,7 @@ export function PricingCTA() {
               ))}
             </ul>
           </Plate>
-          <div className="mt-10 hidden md:block">
+          <div className="mt-10">
             <CtaButton>Записаться</CtaButton>
           </div>
         </FadeIn>
