@@ -40,19 +40,19 @@ html {
 }
 
 body {
-  /* One continuous wash along the full page — colors melt into each other */
+  /* Fixed to viewport so the full pink → cool → pink blend stays visible */
   background-color: #f8fafc;
   background-image: linear-gradient(
     180deg,
     #fce7f3 0%,
-    #fdf2f8 14%,
-    #f8fafc 32%,
-    #f1f5f9 50%,
-    #f8fafc 68%,
-    #fdf2f8 86%,
+    #fdf2f8 18%,
+    #f8fafc 42%,
+    #f1f5f9 62%,
+    #fdf2f8 82%,
     #fce7f3 100%
   );
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: 100% 100%;
   color: var(--foreground);
   font-family: var(--font-manrope), system-ui, sans-serif;
