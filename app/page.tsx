@@ -8,6 +8,7 @@ import { PricingCTA } from "@/components/PricingCTA";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { MobileStickyCta } from "@/components/MobileStickyCta";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -24,6 +25,7 @@ export default function Home() {
       </main>
       <Footer />
       <MobileStickyCta />
+      <ScrollToTop />
     </div>
   );
 }
