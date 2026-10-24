@@ -12,7 +12,7 @@ export function FAQ() {
 
   return (
     <section className="section" id="faq">
-      <SceneWash src="/images/overlay-london.jpg" position="50% 40%" strength="soft" />
+      <SceneWash src="/images/overlay-la.jpg" position="50% 40%" strength="soft" />
       <div className="section-inner">
         <div className="mx-auto w-full max-w-[760px]">
           <FadeIn>
