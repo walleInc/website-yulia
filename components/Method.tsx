@@ -2,8 +2,7 @@
 
 import { FadeIn } from "@/components/FadeIn";
 import { Plate } from "@/components/Plate";
-import { Page } from "@/components/Page";
-import { Snapshot } from "@/components/Snapshot";
+import { SceneWash } from "@/components/SceneWash";
 import { Squiggle } from "@/components/Doodles";
 
 const STEPS = [
@@ -32,9 +31,8 @@ const STEPS = [
 export function Method() {
   return (
     <section className="section" id="method">
-      <Page>
-      <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-14">
-      <div>
+      <SceneWash src="/images/collage-travel.jpg" position="50% 40%" strength="soft" />
+      <div className="section-inner mx-auto max-w-3xl">
         <FadeIn>
           <Plate shape="blob" tone="blush" inline tilt={-1}>
             <h2 className="font-heading text-4xl text-ink sm:text-5xl lg:text-6xl">
@@ -48,7 +46,7 @@ export function Method() {
           <Plate shape="soft2" tone="cream" tilt={0.7} className="mt-6 max-w-xl">
             <p className="text-lg text-ink">
               Онлайн, 60 минут. Структура, которая держит фокус, и место для
-              живого общения.
+              живого общения — как коллекция полезных фраз в дорогу.
             </p>
           </Plate>
         </FadeIn>
@@ -80,21 +78,6 @@ export function Method() {
           ))}
         </ol>
       </div>
-      <FadeIn x={30} rotate={1} className="lg:sticky lg:top-28">
-        <Snapshot
-          src="/images/london-bigben.jpg"
-          alt="Биг-Бен"
-          width={335}
-          height={597}
-          aspect="3 / 4"
-          position="50% 25%"
-          tilt={2}
-          tape="right"
-          className="mx-auto w-[75%] max-w-[340px] lg:w-full"
-        />
-      </FadeIn>
-      </div>
-      </Page>
     </section>
   );
 }
