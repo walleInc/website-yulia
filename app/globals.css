@@ -125,6 +125,25 @@ body {
   opacity: 0.34;
 }
 
+/* Phones: photos a touch clearer, since tall sections show less of them */
+@media (max-width: 639px) {
+  .scene-wash__img {
+    opacity: 0.36;
+  }
+
+  .scene-wash--soft .scene-wash__img {
+    opacity: 0.26;
+  }
+
+  .scene-wash--strong .scene-wash__img {
+    opacity: 0.42;
+  }
+
+  .scene-wash__fade {
+    opacity: 0.8;
+  }
+}
+
 .scene-wash__fade {
   position: absolute;
   inset: 0;
