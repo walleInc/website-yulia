@@ -1,4 +1,6 @@
-export const TELEGRAM_URL = "https://t.me/lumin_spark";
+export const TELEGRAM_USERNAME = "lumin_spark";
+export const TELEGRAM_MESSAGE = "Привет! Хочу записаться на занятия по английскому)";
+export const TELEGRAM_URL = `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(TELEGRAM_MESSAGE)}`;
 export const INSTAGRAM_URL = "https://instagram.com/yudinaaa_eng";
 export const TELEGRAM_HANDLE = "@lumin_spark";
 export const INSTAGRAM_HANDLE = "@yudinaaa_eng";
