@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  /* Dusty rose / true pink — cooler than peach */
-  --paper: #faf5f7;
-  --blush: #f0d4dc;
-  --rose: #e0a8b8;
-  --caramel: #c48a9a;
-  --cocoa: #7a4a58;
+  /* Dusty rose / true pink — magenta-leaning, away from peach */
+  --paper: #fdf6fa;
+  --blush: #f7d9e7;
+  --rose: #eb9fc2;
+  --caramel: #c77fa5;
+  --cocoa: #85476d;
   --ink: #3a1f2a;
   --nav-h: 4rem;
-  --bg-pink: #e8b8c4;
+  --bg-pink: #f0b8d0;
 }
 
 @theme inline {
@@ -93,7 +93,7 @@ body {
 .marker {
   background-image: linear-gradient(
     transparent 55%,
-    rgba(240, 212, 220, 1) 55% 92%,
+    rgba(247, 217, 231, 1) 55% 92%,
     transparent 92%
   );
   padding: 0 0.15em;
@@ -128,6 +128,8 @@ body {
 .scene-wash__fade {
   position: absolute;
   inset: 0;
+  /* Takes the pink hue and keeps the photo's light, so orange sunsets read pink */
+  mix-blend-mode: color;
   background: linear-gradient(
     180deg,
     color-mix(in srgb, var(--bg-pink) 55%, transparent) 0%,
@@ -154,7 +156,7 @@ body {
   position: absolute;
   height: 28px;
   width: 92px;
-  background: rgba(240, 212, 220, 0.78);
+  background: rgba(247, 217, 231, 0.78);
   backdrop-filter: blur(1px);
   box-shadow: 0 1px 3px rgba(58, 31, 42, 0.18);
   clip-path: polygon(0 8%, 4% 0, 8% 10%, 12% 0, 100% 0, 96% 25%, 100% 50%, 96% 75%, 100% 100%, 8% 100%, 4% 88%, 0 100%, 3% 50%);
@@ -209,9 +211,9 @@ body {
   color: var(--ink);
 }
 
-.plate--cream { background: #faf5f7; }
+.plate--cream { background: #fdf6fa; }
 .plate--blush { background: var(--blush); }
-.plate--rose { background: #e8b8c4; }
+.plate--rose { background: #f0b8d0; }
 .plate--cocoa { background: var(--cocoa); color: var(--paper); }
 
 .plate--soft1 {

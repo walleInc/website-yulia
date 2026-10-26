@@ -4,7 +4,6 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Plate } from "@/components/Plate";
 import { FadeIn } from "@/components/FadeIn";
-import { SceneWash } from "@/components/SceneWash";
 import { FAQ_ITEMS } from "@/lib/constants";
 
 export function FAQ() {
@@ -12,7 +11,6 @@ export function FAQ() {
 
   return (
     <section className="section" id="faq">
-      <SceneWash src="/images/overlay-la.jpg" position="50% 40%" strength="soft" />
       <div className="section-inner">
         <div className="mx-auto w-full max-w-[760px]">
           <FadeIn>

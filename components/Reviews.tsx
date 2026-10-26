@@ -3,7 +3,6 @@
 import { FadeIn } from "@/components/FadeIn";
 import { Pin } from "@/components/Pin";
 import { Plate } from "@/components/Plate";
-import { SceneWash } from "@/components/SceneWash";
 import { REVIEWS } from "@/lib/constants";
 
 const TILTS = [-1.2, 1.4, 1, -1.5] as const;
@@ -24,7 +23,6 @@ function ReviewNote({ review, i }: { review: (typeof REVIEWS)[number]; i: number
 export function Reviews() {
   return (
     <section className="section" id="reviews">
-      <SceneWash src="/images/overlay-nyc-sunset.jpg" position="50% 45%" strength="soft" />
       <div className="section-inner">
         <div className="w-full">
           <FadeIn className="flex flex-col items-center text-center">

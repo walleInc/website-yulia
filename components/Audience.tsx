@@ -2,16 +2,16 @@
 
 import { FadeIn } from "@/components/FadeIn";
 import { Plate } from "@/components/Plate";
-import { SceneWash } from "@/components/SceneWash";
+import { StickerCollage } from "@/components/StickerCollage";
 import { Check } from "@/components/Doodles";
 import { AUDIENCE } from "@/lib/constants";
 
 export function Audience() {
   return (
     <section className="section" id="audience">
-      <SceneWash src="/images/overlay-nyc.jpg" position="50% 35%" />
       <div className="section-inner">
-        <div className="mx-auto flex max-w-3xl flex-col items-start gap-6">
+        <div className="mx-auto max-w-3xl lg:max-w-4xl lg:grid lg:grid-cols-[1fr_16rem] lg:items-center lg:gap-10">
+        <div className="flex flex-col items-start gap-6">
           <FadeIn>
             <Plate shape="blob" tone="blush" inline tilt={-1}>
               <h2 className="font-heading text-3xl text-ink sm:text-5xl">
@@ -49,6 +49,15 @@ export function Audience() {
               </span>
             </Plate>
           </FadeIn>
+        </div>
+
+        <StickerCollage
+          items={[
+            { src: "/images/stickers/audience-nyc.jpg", tilt: 3 },
+            { src: "/images/stickers/audience-suitcase.jpg", tilt: -3 },
+          ]}
+          className="mt-8 w-full max-w-xs lg:mt-0 lg:max-w-none"
+        />
         </div>
       </div>
     </section>
