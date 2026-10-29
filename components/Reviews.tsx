@@ -15,6 +15,7 @@ function ReviewNote({ review, i }: { review: (typeof REVIEWS)[number]; i: number
       <Pin tone={PINS[i % PINS.length]} className="left-1/2 -top-1 -translate-x-1/2" />
       <Plate shape={i % 2 ? "soft2" : "soft1"} tone={TONES[i % TONES.length]} className="h-full">
         <p className="text-lg leading-relaxed text-ink sm:text-xl">{review.text}</p>
+        <p className="mt-3 font-script text-2xl text-cocoa">— {review.name}</p>
       </Plate>
     </div>
   );
@@ -56,7 +57,16 @@ export function Reviews() {
 
           <div className="mt-12 hidden gap-x-8 gap-y-10 sm:grid sm:grid-cols-2">
             {REVIEWS.map((review, i) => (
-              <FadeIn key={`desktop-${i}`} delay={(i % 2) * 0.1} rotate={TILTS[i % TILTS.length]}>
+              <FadeIn
+                key={`desktop-${i}`}
+                delay={(i % 2) * 0.1}
+                rotate={TILTS[i % TILTS.length]}
+                className={
+                  i === REVIEWS.length - 1 && REVIEWS.length % 2
+                    ? "sm:col-span-2 sm:mx-auto sm:max-w-xl"
+                    : undefined
+                }
+              >
                 <ReviewNote review={review} i={i} />
               </FadeIn>
             ))}

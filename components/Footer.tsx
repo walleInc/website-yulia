@@ -55,10 +55,23 @@ export function Footer() {
       </div>
 
       <div className="border-t border-paper/20">
-        <p className="mx-auto max-w-[1200px] px-5 py-5 text-sm text-rose sm:px-8">
-          © 2026 Юля Юдина. Индивидуальные занятия английским языком онлайн.
-          Не является публичной офертой.
-        </p>
+        <div className="mx-auto flex max-w-[1200px] flex-col gap-2 px-5 py-5 text-sm text-rose sm:px-8">
+          <p>
+            © 2026 Юля Юдина. Индивидуальные занятия английским языком онлайн.
+            Не является публичной офертой.
+          </p>
+          <p>
+            Сделано командой{" "}
+            <a
+              href="https://delo-102.ru"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 transition-colors hover:text-paper"
+            >
+              delo102
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );
