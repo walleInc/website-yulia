@@ -19,7 +19,7 @@ export function Navbar() {
   return (
     <motion.header
       className={`sticky top-0 z-50 transition-colors duration-500 ${
-        scrolled ? "bg-blush/90 shadow-[0_1px_0_rgba(134,99,79,0.2)] backdrop-blur-md" : "bg-transparent"
+        scrolled ? "bg-blush/90 shadow-[0_1px_0_rgba(133,71,109,0.2)] backdrop-blur-md" : "bg-transparent"
       }`}
       animate={{ y: hidden ? "-100%" : 0 }}
       transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}

@@ -1,22 +1,22 @@
 "use client";
 
 import { FadeIn } from "@/components/FadeIn";
-import { Page } from "@/components/Page";
 import { Pin } from "@/components/Pin";
 import { Plate } from "@/components/Plate";
 import { REVIEWS } from "@/lib/constants";
 
 const TILTS = [-1.2, 1.4, 1, -1.5] as const;
-const TONES = ["", "sheet--blush", "sheet--rose", ""] as const;
+const TONES = ["cream", "blush", "rose", "cream"] as const;
 const PINS = ["cocoa", "rose", "caramel", "cocoa"] as const;
 
 function ReviewNote({ review, i }: { review: (typeof REVIEWS)[number]; i: number }) {
   return (
-    <div className="sheet-wrap h-full pt-4">
+    <div className="relative h-full pt-4">
       <Pin tone={PINS[i % PINS.length]} className="left-1/2 -top-1 -translate-x-1/2" />
-      <article className={`sheet ${TONES[i % TONES.length]} h-full px-6 pb-12 pt-10 sm:px-8`}>
-        <p className="sheet-text text-ink">{review.text}</p>
-      </article>
+      <Plate shape={i % 2 ? "soft2" : "soft1"} tone={TONES[i % TONES.length]} className="h-full">
+        <p className="text-lg leading-relaxed text-ink sm:text-xl">{review.text}</p>
+        <p className="mt-3 font-script text-2xl text-cocoa">— {review.name}</p>
+      </Plate>
     </div>
   );
 }
@@ -24,7 +24,7 @@ function ReviewNote({ review, i }: { review: (typeof REVIEWS)[number]; i: number
 export function Reviews() {
   return (
     <section className="section" id="reviews">
-      <Page>
+      <div className="section-inner">
         <div className="w-full">
           <FadeIn className="flex flex-col items-center text-center">
             <Plate shape="blob" tone="blush" inline tilt={-1}>
@@ -40,7 +40,6 @@ export function Reviews() {
             </Plate>
           </FadeIn>
 
-          {/* Mobile gallery */}
           <div
             className="-mx-2 mt-10 flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto px-5 pb-6 pt-4 [-ms-overflow-style:none] [scrollbar-width:none] sm:hidden [&::-webkit-scrollbar]:hidden"
             style={{ WebkitOverflowScrolling: "touch" }}
@@ -56,16 +55,24 @@ export function Reviews() {
             ))}
           </div>
 
-          {/* Tablet / desktop: 2 x 2 */}
           <div className="mt-12 hidden gap-x-8 gap-y-10 sm:grid sm:grid-cols-2">
             {REVIEWS.map((review, i) => (
-              <FadeIn key={`desktop-${i}`} delay={(i % 2) * 0.1} rotate={TILTS[i % TILTS.length]}>
+              <FadeIn
+                key={`desktop-${i}`}
+                delay={(i % 2) * 0.1}
+                rotate={TILTS[i % TILTS.length]}
+                className={
+                  i === REVIEWS.length - 1 && REVIEWS.length % 2
+                    ? "sm:col-span-2 sm:mx-auto sm:max-w-xl"
+                    : undefined
+                }
+              >
                 <ReviewNote review={review} i={i} />
               </FadeIn>
             ))}
           </div>
         </div>
-      </Page>
+      </div>
     </section>
   );
 }

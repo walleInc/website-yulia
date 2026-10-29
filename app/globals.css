@@ -1,14 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  /* Palette from the reference swatch */
-  --paper: #f7f2ec;
-  --blush: #e8cdc7;
-  --rose: #d3ae9f;
-  --caramel: #b88d78;
-  --cocoa: #86634f;
-  --ink: #35231a;
+  /* Dusty rose / true pink — magenta-leaning, away from peach */
+  --paper: #fdf6fa;
+  --blush: #f7d9e7;
+  --rose: #eb9fc2;
+  --caramel: #c77fa5;
+  --cocoa: #85476d;
+  --ink: #3a1f2a;
   --nav-h: 4rem;
+  --bg-pink: #f0b8d0;
 }
 
 @theme inline {
@@ -19,7 +20,7 @@
   --color-cocoa: var(--cocoa);
   --color-ink: var(--ink);
   --color-accent: var(--cocoa);
-  --color-accent-dark: #6b4a38;
+  --color-accent-dark: #5e3542;
   --font-sans: var(--font-neucha);
   --font-heading: var(--font-marck);
   --font-script: var(--font-caveat);
@@ -38,7 +39,7 @@ html {
 }
 
 body {
-  background-color: #e8c1bb;
+  background-color: var(--bg-pink);
   color: var(--ink);
   font-family: var(--font-neucha), "Comic Sans MS", cursive;
   font-size: 21px;
@@ -52,7 +53,7 @@ body {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-color: #e8c1bb;
+  background-color: var(--bg-pink);
   pointer-events: none;
 }
 
@@ -69,21 +70,30 @@ body {
 }
 
 .section {
-  padding: 1.25rem 0.75rem;
+  position: relative;
+  padding: 2.5rem 0.75rem;
+  overflow: clip;
 }
 
 @media (min-width: 640px) {
   .section {
-    padding: 1.75rem 1.5rem;
+    padding: 3.5rem 1.5rem;
   }
 }
 
+.section-inner {
+  position: relative;
+  z-index: 1;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+}
 
 /* Marker highlight behind a word */
 .marker {
   background-image: linear-gradient(
     transparent 55%,
-    rgba(232, 205, 199, 1) 55% 92%,
+    rgba(247, 217, 231, 1) 55% 92%,
     transparent 92%
   );
   padding: 0 0.15em;
@@ -91,56 +101,65 @@ body {
   -webkit-box-decoration-break: clone;
 }
 
-/* Lined notebook sheet — no outline, torn bottom edge, soft shadow on wrapper */
-.sheet-wrap {
-  position: relative;
-  filter: drop-shadow(0 10px 14px rgba(74, 52, 40, 0.22));
-}
-
-.sheet {
-  position: relative;
-  background-color: var(--paper);
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0 31px,
-    rgba(134, 99, 79, 0.2) 31px 32px
-  );
-  background-position: 0 14px;
-  clip-path: polygon(
-    0 0, 100% 0, 100% 97.5%, 96% 99.5%, 91% 97.8%, 86% 99.6%, 80% 98%,
-    74% 99.7%, 68% 97.9%, 62% 99.5%, 55% 98%, 49% 99.6%, 43% 97.9%,
-    37% 99.5%, 31% 98.1%, 25% 99.6%, 19% 98%, 13% 99.5%, 7% 98.2%,
-    3% 99.6%, 0 98%
-  );
-}
-
-/* Pink margin line like a school notebook */
-.sheet--blush {
-  background-color: var(--blush);
-}
-
-.sheet--rose {
-  background-color: #dcbcae;
-}
-
-.sheet--margin::before {
-  content: "";
+/* Thematic photo wash behind a section */
+.scene-wash {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 3.1rem;
-  width: 2px;
-  background: rgba(211, 140, 130, 0.55);
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.sheet-text {
-  line-height: 32px;
-  font-size: 20px;
+.scene-wash__img {
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.28;
+  filter: saturate(0.9) contrast(0.95);
+}
+
+.scene-wash--soft .scene-wash__img {
+  opacity: 0.18;
+}
+
+.scene-wash--strong .scene-wash__img {
+  opacity: 0.34;
+}
+
+/* Phones: photos a touch clearer, since tall sections show less of them */
+@media (max-width: 639px) {
+  .scene-wash__img {
+    opacity: 0.36;
+  }
+
+  .scene-wash--soft .scene-wash__img {
+    opacity: 0.26;
+  }
+
+  .scene-wash--strong .scene-wash__img {
+    opacity: 0.42;
+  }
+
+  .scene-wash__fade {
+    opacity: 0.8;
+  }
+}
+
+.scene-wash__fade {
+  position: absolute;
+  inset: 0;
+  /* Takes the pink hue and keeps the photo's light, so orange sunsets read pink */
+  mix-blend-mode: color;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--bg-pink) 55%, transparent) 0%,
+    color-mix(in srgb, var(--bg-pink) 25%, transparent) 40%,
+    color-mix(in srgb, var(--bg-pink) 70%, transparent) 100%
+  );
 }
 
 /* Photo cut-out: white sticker edge with uneven outline */
 .sticker-wrap {
-  filter: drop-shadow(0 12px 16px rgba(74, 52, 40, 0.3));
+  filter: drop-shadow(0 12px 16px rgba(58, 31, 42, 0.28));
 }
 
 .sticker {
@@ -156,15 +175,15 @@ body {
   position: absolute;
   height: 28px;
   width: 92px;
-  background: rgba(232, 205, 199, 0.78);
+  background: rgba(247, 217, 231, 0.78);
   backdrop-filter: blur(1px);
-  box-shadow: 0 1px 3px rgba(74, 52, 40, 0.18);
+  box-shadow: 0 1px 3px rgba(58, 31, 42, 0.18);
   clip-path: polygon(0 8%, 4% 0, 8% 10%, 12% 0, 100% 0, 96% 25%, 100% 50%, 96% 75%, 100% 100%, 8% 100%, 4% 88%, 0 100%, 3% 50%);
 }
 
 .dotted-leader {
   flex: 1;
-  border-bottom: 2px dotted rgba(134, 99, 79, 0.5);
+  border-bottom: 2px dotted rgba(122, 74, 88, 0.45);
   transform: translateY(-0.35em);
   min-width: 1rem;
 }
@@ -175,22 +194,9 @@ body {
   }
 }
 
-/* White sheet of paper holding a whole section; torn top and bottom edges */
-.page {
-  position: relative;
-  background-color: #fffefb;
-  padding: 3.5rem clamp(1.25rem, 5vw, 4rem);
-  clip-path: polygon(0% 2px, 2% 1px, 4% 3px, 6% 7px, 8% 0px, 10% 0px, 12% 9px, 14% 5px, 16% 0px, 18% 2px, 20% 5px, 22% 0px, 24% 5px, 26% 1px, 28% 0px, 30% 0px, 32% 3px, 34% 3px, 36% 0px, 38% 1px, 40% 0px, 42% 5px, 44% 3px, 46% 0px, 48% 9px, 50% 5px, 52% 0px, 54% 1px, 56% 7px, 58% 7px, 60% 5px, 62% 0px, 64% 5px, 66% 5px, 68% 3px, 70% 0px, 72% 1px, 74% 0px, 76% 5px, 78% 9px, 80% 1px, 82% 2px, 84% 3px, 86% 1px, 88% 5px, 90% 0px, 92% 5px, 94% 2px, 96% 5px, 98% 9px, 100% 7px, 100% calc(100% - 1px), 98% calc(100% - 0px), 96% calc(100% - 5px), 94% calc(100% - 5px), 92% calc(100% - 7px), 90% calc(100% - 1px), 88% calc(100% - 2px), 86% calc(100% - 0px), 84% calc(100% - 5px), 82% calc(100% - 7px), 80% calc(100% - 0px), 78% calc(100% - 5px), 76% calc(100% - 0px), 74% calc(100% - 5px), 72% calc(100% - 1px), 70% calc(100% - 3px), 68% calc(100% - 7px), 66% calc(100% - 5px), 64% calc(100% - 3px), 62% calc(100% - 9px), 60% calc(100% - 2px), 58% calc(100% - 3px), 56% calc(100% - 5px), 54% calc(100% - 3px), 52% calc(100% - 2px), 50% calc(100% - 2px), 48% calc(100% - 1px), 46% calc(100% - 9px), 44% calc(100% - 1px), 42% calc(100% - 7px), 40% calc(100% - 9px), 38% calc(100% - 1px), 36% calc(100% - 0px), 34% calc(100% - 5px), 32% calc(100% - 2px), 30% calc(100% - 5px), 28% calc(100% - 3px), 26% calc(100% - 2px), 24% calc(100% - 7px), 22% calc(100% - 3px), 20% calc(100% - 2px), 18% calc(100% - 5px), 16% calc(100% - 0px), 14% calc(100% - 0px), 12% calc(100% - 5px), 10% calc(100% - 3px), 8% calc(100% - 1px), 6% calc(100% - 9px), 4% calc(100% - 2px), 2% calc(100% - 1px), 0% calc(100% - 3px));
-  filter: none;
-}
-
-.page-wrap {
-  filter: drop-shadow(0 14px 20px rgba(110, 50, 50, 0.3));
-}
-
 /* Pasted print: white backing at the bottom, edges cut slightly crooked */
 .snap-wrap {
-  filter: drop-shadow(0 8px 10px rgba(53, 35, 26, 0.28));
+  filter: drop-shadow(0 8px 10px rgba(58, 31, 42, 0.28));
 }
 
 .snap-card {
@@ -203,9 +209,20 @@ body {
   clip-path: polygon(1% 0, 42% 1.5%, 99% 0, 100% 42%, 98.6% 100%, 55% 98.6%, 0 100%, 1.4% 52%);
 }
 
+/* Mini stickers for collage clusters */
+.sticker-chip {
+  background: #fffdfa;
+  padding: 6px;
+  clip-path: polygon(
+    2% 2%, 28% 0, 58% 2%, 88% 0, 100% 18%, 98% 55%, 100% 88%, 72% 100%,
+    38% 98%, 8% 100%, 0 72%, 2% 38%
+  );
+  box-shadow: 0 8px 14px rgba(58, 31, 42, 0.22);
+}
+
 /* Text plates: shaped backings so copy stays readable on any background */
 .plate-wrap {
-  filter: drop-shadow(0 6px 8px rgba(110, 50, 50, 0.22));
+  filter: drop-shadow(0 6px 8px rgba(90, 40, 55, 0.2));
 }
 
 .plate {
@@ -213,9 +230,9 @@ body {
   color: var(--ink);
 }
 
-.plate--cream { background: #f7f2ec; }
+.plate--cream { background: #fdf6fa; }
 .plate--blush { background: var(--blush); }
-.plate--rose { background: #dcbcae; }
+.plate--rose { background: #f0b8d0; }
 .plate--cocoa { background: var(--cocoa); color: var(--paper); }
 
 .plate--soft1 {
